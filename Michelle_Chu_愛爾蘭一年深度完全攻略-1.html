@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<!-- 
+  Michelle Chu帶你愛爾蘭一年深度完全攻略
+  ✅ 完全獨立 HTML 檔案 — 不需要網路、不需要 Claude
+  ✅ 雙擊即可在任何瀏覽器開啟
+  ✅ 可直接上傳至 GitHub Pages / Netlify / Vercel 等免費空間
+-->
+
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michelle Chu帶你愛爾蘭一年深度完全攻略</title>
+
+<style>
+  /* ── Self-contained font stack ── 
+     No external requests needed.
+     Playfair Display → Georgia / Times (elegant serif)
+     Crimson Pro      → Palatino / Book Antiqua (refined serif)
+     Noto Sans TC     → PingFang / Microsoft JhengHei / system CJK
+  */
+  @font-face {
+    font-family: 'Playfair Display';
+    src: local('Georgia'), local('Times New Roman');
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Crimson Pro';
+    src: local('Palatino Linotype'), local('Book Antiqua'), local('Palatino');
+    font-style: normal;
+  }
+  /* CJK fonts declared explicitly for cross-platform consistency */
+
+  :root {
+    --emerald: #1a4a2e;
+    --emerald-mid: #2d6a44;
+    --emerald-light: #4a9463;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --parchment: #ede5d0;
+    --dark: #0e1f14;
+    --text: #1c2e20;
+    --mist: #7a9e85;
+    --stone: #8b7355;
+    --atlantic: #2c5f7a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', 'Noto Sans TC', '微軟正黑體', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(26,74,46,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(44,95,122,0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, rgba(201,168,76,0.2) 0%, transparent 40%),
+      linear-gradient(160deg, #0e1f14 0%, #0a1a10 40%, #091520 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(26,74,46,0.04) 80px,
+        rgba(26,74,46,0.04) 81px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(26,74,46,0.04) 80px,
+        rgba(26,74,46,0.04) 81px
+      );
+  }
+
+  .shamrock-bg {
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.03;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: slowspin 60s linear infinite;
+  }
+
+  @keyframes slowspin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 1rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-style: italic;
+    color: var(--mist);
+    margin: 1rem 0 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .hero-desc {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 1.15rem;
+    color: rgba(245,240,232,0.7);
+    max-width: 600px;
+    line-height: 1.8;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--mist);
+    letter-spacing: 0.1em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--mist);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(14,31,20,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--mist);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', 'Noto Sans TC', '微軟正黑體', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
+    font-weight: 700;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .section.active { display: block; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--mist);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* REGION CARDS */
+  .regions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .region-card {
+    background: linear-gradient(145deg, rgba(26,74,46,0.3), rgba(14,31,20,0.8));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .region-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(201,168,76,0.1);
+  }
+
+  .region-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .region-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .region-name {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .region-gaelic {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 0.9rem;
+  }
+
+  .region-body {
+    padding: 1.5rem;
+  }
+
+  .region-season {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+  }
+
+  .region-desc {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 1rem;
+    color: rgba(245,240,232,0.75);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  .spots-list {
+    list-style: none;
+  }
+
+  .spots-list li {
+    padding: 0.4rem 0;
+    font-size: 0.88rem;
+    color: var(--mist);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .spots-list li:last-child { border: none; }
+
+  .spot-icon {
+    color: var(--gold);
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+
+  .spot-text strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* TABS inside card */
+  .card-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    margin-bottom: 1rem;
+  }
+
+  .card-tab {
+    background: none;
+    border: none;
+    color: var(--mist);
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-family: 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', 'Noto Sans TC', '微軟正黑體', sans-serif;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.2s;
+  }
+
+  .card-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  .card-tab-content { display: none; }
+  .card-tab-content.active { display: block; }
+
+  /* FOOD SECTION */
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .food-card {
+    background: linear-gradient(145deg, rgba(44,95,122,0.2), rgba(14,31,20,0.8));
+    border: 1px solid rgba(44,95,122,0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .food-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .food-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .food-name {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .food-zh {
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .food-desc {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+  }
+
+  .food-where {
+    font-size: 0.8rem;
+    color: var(--mist);
+  }
+
+  .food-where strong {
+    color: var(--gold-light);
+  }
+
+  /* SEASONAL */
+  .seasons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .seasons-grid { grid-template-columns: 1fr; }
+    .regions-grid { grid-template-columns: 1fr; }
+    .food-grid { grid-template-columns: 1fr; }
+  }
+
+  .season-card {
+    background: rgba(26,74,46,0.2);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .season-card::before {
+    content: attr(data-emoji);
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 3rem;
+    opacity: 0.3;
+  }
+
+  .season-name {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .season-months {
+    color: var(--mist);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+  }
+
+  .season-list {
+    list-style: none;
+  }
+
+  .season-list li {
+    padding: 0.35rem 0;
+    font-size: 0.88rem;
+    color: rgba(245,240,232,0.8);
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* TIPS */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tip-card {
+    background: rgba(14,31,20,0.7);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .tip-card:hover { border-color: rgba(201,168,76,0.4); }
+
+  .tip-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .tip-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+  }
+
+  .tip-text {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.6;
+  }
+
+  /* DIVIDER */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2rem 0;
+  }
+
+  /* TAG pills */
+  .tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    padding: 0.15rem 0.6rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    margin: 0.1rem;
+  }
+
+  .tag.blue {
+    background: rgba(44,95,122,0.2);
+    border-color: rgba(44,95,122,0.4);
+    color: #7bbdd6;
+  }
+
+  .tag.stone {
+    background: rgba(139,115,85,0.2);
+    border-color: rgba(139,115,85,0.4);
+    color: #c4a882;
+  }
+
+  /* BIG INFO BLOCK */
+  .info-block {
+    background: linear-gradient(135deg, rgba(26,74,46,0.3), rgba(14,31,20,0.5));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-block h3 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+  }
+
+  .info-block p, .info-block li {
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    color: rgba(245,240,232,0.8);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .info-block ul { padding-left: 1.2rem; }
+
+  /* MUST BUY */
+  .buy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .buy-item {
+    background: rgba(139,115,85,0.15);
+    border: 1px solid rgba(139,115,85,0.3);
+    border-radius: 12px;
+    padding: 1.2rem;
+    transition: all 0.2s;
+  }
+
+  .buy-item:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .buy-emoji { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+  .buy-name { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-size: 1rem; color: var(--cream); margin-bottom: 0.4rem; }
+  .buy-zh { color: var(--gold); font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .buy-desc { font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif; font-size: 0.88rem; color: rgba(245,240,232,0.65); line-height: 1.5; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    font-family: 'Crimson Pro', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    color: var(--mist);
+    font-size: 0.9rem;
+  }
+
+  .footer .shamrock { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--emerald-mid); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="shamrock-bg">☘</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Éire · Emerald Isle · 翡翠之島</p>
+    <h1 class="hero-title"><span style="font-size:0.55em; letter-spacing:0.02em;">Michelle Chu 帶你</span><br>愛爾蘭<br><span>一年深度</span><br>完全攻略</h1>
+    <p class="hero-subtitle">從都柏林到多尼戈爾，從秘境小鎮到荒野海岸</p>
+    <p class="hero-desc">32個郡、8大區域、數百個景點、最道地的美食餐廳、私房祕境，以及每個季節最值得做的事情——這是為長住一年的你所準備的終極指南。</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">大區域</div></div>
+      <div class="stat"><div class="stat-num">32</div><div class="stat-label">個縣份</div></div>
+      <div class="stat"><div class="stat-num">200+</div><div class="stat-label">景點體驗</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">季節行程</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>▼</span>
+    <span style="letter-spacing:0.2em;font-size:0.7rem;">向下探索</span>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('regions')">🗺 八大區域</button>
+  <button class="nav-btn" onclick="showSection('food')">🍽 美食飲食</button>
+  <button class="nav-btn" onclick="showSection('seasonal')">🍃 四季行程</button>
+  <button class="nav-btn" onclick="showSection('buy')">🛍 必買伴手禮</button>
+  <button class="nav-btn" onclick="showSection('tips')">💡 實用資訊</button>
+</nav>
+
+<!-- ============ REGIONS ============ -->
+<section class="section active" id="regions">
+  <div class="section-header">
+    <p class="section-tag">Eight Regions · 八大區域深度解析</p>
+    <h2 class="section-title">從東岸到西岸<br>每一片土地都有靈魂</h2>
+    <p class="section-intro">愛爾蘭雖然面積不大，卻藏著驚人的多樣性。城市的活力、荒野的壯闊、中古的石牆、大西洋的浪潮——每個區域都值得單獨深探。</p>
+  </div>
+
+  <div class="regions-grid">
+
+    <!-- DUBLIN -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">🏙</div>
+        <div>
+          <div class="region-name">都柏林 Dublin</div>
+          <div class="region-gaelic">Baile Átha Cliath · 推薦停留：3-6個月</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">🌤 全年皆宜，秋冬文化活動最豐富</span>
+        <p class="region-desc">愛爾蘭的首都與靈魂，既有維多利亞時代的優雅磚造建築，也有充滿活力的當代文藝場景。文豪葉慈、王爾德、貝克特的足跡無處不在。</p>
+        
+        <div class="card-tabs">
+          <button class="card-tab active" onclick="switchTab(this, 'dub-sights')">景點</button>
+          <button class="card-tab" onclick="switchTab(this, 'dub-hidden')">私房</button>
+          <button class="card-tab" onclick="switchTab(this, 'dub-food')">美食</button>
+          <button class="card-tab" onclick="switchTab(this, 'dub-exp')">體驗</button>
+        </div>
+
+        <div class="card-tab-content active" id="dub-sights">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🏛</span><span class="spot-text"><strong>三一學院 Trinity College</strong> — 凱爾斯書（Book of Kells）是中世紀手抄聖經傑作，長廊圖書館氣場震撼，務必提前網購票</span></li>
+            <li><span class="spot-icon">🍺</span><span class="spot-text"><strong>健力士啤酒廠 Storehouse</strong> — 7層樓的品牌博物館，頂樓Gravity Bar俯瞰都柏林全景，附一杯現拉健力士</span></li>
+            <li><span class="spot-icon">⛪</span><span class="spot-text"><strong>基督教堂 Christ Church Cathedral</strong> — 建於1030年，地下室有中世紀遺跡，還有一具木乃伊貓追鼠的傳說標本</span></li>
+            <li><span class="spot-icon">🏰</span><span class="spot-text"><strong>都柏林城堡 Dublin Castle</strong> — 愛爾蘭歷史的縮影，國家典禮在此舉行，含Chester Beatty圖書館（免費）</span></li>
+            <li><span class="spot-icon">🦁</span><span class="spot-text"><strong>鳳凰公園 Phoenix Park</strong> — 歐洲最大城市公園，有野生鹿群自由漫步，面積是海德公園的3倍</span></li>
+            <li><span class="spot-icon">🎨</span><span class="spot-text"><strong>國家美術館 National Gallery</strong> — 卡拉瓦喬真跡《基督被捕》免費入場，全年開放</span></li>
+            <li><span class="spot-icon">⛓</span><span class="spot-text"><strong>Kilmainham Gaol 監獄博物館</strong> — 愛爾蘭獨立運動烈士的行刑地，導覽行程極具震撼力，必須提前預約</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="dub-hidden">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🌿</span><span class="spot-text"><strong>愛爾蘭國家植物園 Glasnevin</strong> — 市區外，免費入場，溫室壯觀，幾乎無觀光客</span></li>
+            <li><span class="spot-icon">📚</span><span class="spot-text"><strong>Marsh's Library</strong> — 愛爾蘭最古老公共圖書館（1701年），木製鐵籠書架，像走進霍格華茲</span></li>
+            <li><span class="spot-icon">🎭</span><span class="spot-text"><strong>Blessington Street Basin</strong> — 維多利亞時代的水庫改造成秘密花園，本地人的午休聖地</span></li>
+            <li><span class="spot-icon">🍵</span><span class="spot-text"><strong>Iveagh Gardens</strong> — 隱藏版花園，有瀑布噴泉，遊客稀少，Stephen's Green的完美替代</span></li>
+            <li><span class="spot-icon">🌅</span><span class="spot-text"><strong>Howth Head 懸崖步道</strong> — 搭DART鐵路30分鐘可達，海岸步道壯觀，有鰹鳥殖民地，最後到漁港吃海鮮</span></li>
+            <li><span class="spot-icon">🧱</span><span class="spot-text"><strong>Dalkey Castle & Heritage Centre</strong> — 中世紀小鎮，U2主唱Bono的故鄉，懸崖景致絕美</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="dub-food">
+          <ul class="spots-list">
+            <li><span class="spot-icon">☕</span><span class="spot-text"><strong>Bald Barista / 3fe Coffee</strong> — 都柏林精品咖啡頂級選擇，後者是愛爾蘭精品咖啡先驅</span></li>
+            <li><span class="spot-icon">🥣</span><span class="spot-text"><strong>The Woollen Mills</strong> — 河畔餐廳，都柏林燉鍋（Dublin Coddle）正宗傳承，氛圍絕佳</span></li>
+            <li><span class="spot-icon">🍣</span><span class="spot-text"><strong>The Winding Stair</strong> — 書店兼餐廳，選用愛爾蘭食材的現代料理，Ha'penny Bridge對面</span></li>
+            <li><span class="spot-icon">🧇</span><span class="spot-text"><strong>Fumbally Cafe</strong> — 業內人最愛的週末早午餐，食材全部有機，經常大排長龍</span></li>
+            <li><span class="spot-icon">🐟</span><span class="spot-text"><strong>Howth Harbour 漁港</strong> — 搭DART去Howth，直接從漁船買龍蝦螃蟹，旁邊攤位現烤</span></li>
+            <li><span class="spot-icon">🍻</span><span class="spot-text"><strong>Mulligan's Pub（1782年）</strong> — 都柏林最古老的酒吧之一，健力士是全城口碑最佳</span></li>
+            <li><span class="spot-icon">🥩</span><span class="spot-text"><strong>Liath Restaurant</strong> — Michelin星級，每道菜圍繞五感味覺哲學設計，需早鳥訂位</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="dub-exp">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🎵</span><span class="spot-text"><strong>Temple Bar 傳統音樂之夜</strong> — Oliver St. John Gogarty每晚有現場trad music，免費聆聽</span></li>
+            <li><span class="spot-icon">🎭</span><span class="spot-text"><strong>Abbey Theatre</strong> — 愛爾蘭國家劇院，1904年由葉慈創辦，看一齣愛爾蘭劇是必做之事</span></li>
+            <li><span class="spot-icon">🚶</span><span class="spot-text"><strong>都柏林文學之旅步行</strong> — 追尋喬伊斯《尤利西斯》足跡，每年6月16日Bloomsday全城變裝慶祝</span></li>
+            <li><span class="spot-icon">⛷</span><span class="spot-text"><strong>Wicklow Mountains 威克洛山</strong> — 車程1小時，格倫達洛修道院（6世紀）是最接近都柏林的震撼景點</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CORK & KERRY -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">🌊</div>
+        <div>
+          <div class="region-name">科克 & 凱里 Cork & Kerry</div>
+          <div class="region-gaelic">Corcaigh & Ciarraí · 推薦停留：4-6週</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">🌸 春夏最美，秋天光線如畫</span>
+        <p class="region-desc">愛爾蘭的「美食首都」與最戲劇性的海岸風景並存於此。科克市的英國市場是全歐洲最古老的美食市集，凱里環線是公認最美公路。</p>
+        
+        <div class="card-tabs">
+          <button class="card-tab active" onclick="switchTab(this, 'cork-sights')">景點</button>
+          <button class="card-tab" onclick="switchTab(this, 'cork-hidden')">私房</button>
+          <button class="card-tab" onclick="switchTab(this, 'cork-food')">美食</button>
+        </div>
+
+        <div class="card-tab-content active" id="cork-sights">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🌿</span><span class="spot-text"><strong>英國市場 English Market</strong> — 1788年開業，科克美食靈魂所在，有鮮魚、熟食、奶酪、現烤麵包</span></li>
+            <li><span class="spot-icon">🏰</span><span class="spot-text"><strong>Blarney Castle 布拉尼城堡</strong> — 親吻「雄辯石」傳說能獲得口才，城堡花園同樣值得深探</span></li>
+            <li><span class="spot-icon">🗿</span><span class="spot-text"><strong>Ring of Kerry 凱里環線</strong> — 179公里壯觀環形公路，Killarney出發，沿途有湖泊、山脈、海岬</span></li>
+            <li><span class="spot-icon">🪨</span><span class="spot-text"><strong>Skellig Michael 斯克林島</strong> — 《星際大戰》取景地，6世紀修道院懸立海中孤岩，UNESCO遺址，須提前預約船票</span></li>
+            <li><span class="spot-icon">🌊</span><span class="spot-text"><strong>Dingle Peninsula 丁格半島</strong> — 比Ring of Kerry更原始的海岸，有愛爾蘭語社區，野生海豚Fungie曾常駐</span></li>
+            <li><span class="spot-icon">⛰</span><span class="spot-text"><strong>Killarney National Park</strong> — 愛爾蘭最古老國家公園，有Torc瀑布、Muckross湖、馬車遊湖服務</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="cork-hidden">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🌊</span><span class="spot-text"><strong>Mizen Head 米岑角</strong> — 愛爾蘭最西南端，歐洲大陸邊緣感極強，少人至此</span></li>
+            <li><span class="spot-icon">🏖</span><span class="spot-text"><strong>Barleycove Beach</strong> — 連英國人都稱讚的沙灘，白沙、蔚藍海水，卻罕見遊客</span></li>
+            <li><span class="spot-icon">🌿</span><span class="spot-text"><strong>Lough Hyne 海水湖</strong> — 歐洲最珍稀的鹽水湖，愛爾蘭第一個海洋自然保護區，夜間有生物發光現象</span></li>
+            <li><span class="spot-icon">🗼</span><span class="spot-text"><strong>Cape Clear Island</strong> — 僅少數居民的小島，說愛爾蘭語，賞鳥聖地，渡輪往返，完全遺世獨立</span></li>
+            <li><span class="spot-icon">🍶</span><span class="spot-text"><strong>West Cork Distillers</strong> — 小批量威士忌製造，可預約私人品酒行程</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="cork-food">
+          <ul class="spots-list">
+            <li><span class="spot-icon">☕</span><span class="spot-text"><strong>Farmgate Café</strong> — 英國市場樓上，科克最道地午餐，愛爾蘭燉菜、醃牛肉、骨髓吐司</span></li>
+            <li><span class="spot-icon">🍦</span><span class="spot-text"><strong>Murphy's Ice Cream (Dingle)</strong> — 用愛爾蘭Kerry牛奶製作，海鹽焦糖、海藻口味獨一無二</span></li>
+            <li><span class="spot-icon">🦞</span><span class="spot-text"><strong>Out of the Blue (Dingle)</strong> — 只賣當天漁獲，沒魚就關店，龍蝦海鮮超新鮮</span></li>
+            <li><span class="spot-icon">🥩</span><span class="spot-text"><strong>1826 Adare</strong> — 茅草屋頂餐廳，愛爾蘭式現代料理，夫妻店溫馨精緻</span></li>
+            <li><span class="spot-icon">🧀</span><span class="spot-text"><strong>West Cork Cheese Trail</strong> — Gubbeen農場奶酪、Durrus奶酪，可預約農場參訪</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALWAY & CONNEMARA -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">🌿</div>
+        <div>
+          <div class="region-name">高威 & 科諾馬拉</div>
+          <div class="region-gaelic">Gaillimh & Conamara · 推薦停留：3-4週</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">☀️ 夏季最熱鬧，Arts Festival是盛事</span>
+        <p class="region-desc">高威市是愛爾蘭最有活力的小城，街頭音樂24小時不間斷；科諾馬拉則是最荒蠻原始的西部，泥炭地、亂石堆、古老愛爾蘭語仍在流動。</p>
+
+        <div class="card-tabs">
+          <button class="card-tab active" onclick="switchTab(this, 'gal-sights')">景點</button>
+          <button class="card-tab" onclick="switchTab(this, 'gal-hidden')">私房</button>
+          <button class="card-tab" onclick="switchTab(this, 'gal-food')">美食</button>
+        </div>
+
+        <div class="card-tab-content active" id="gal-sights">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🌊</span><span class="spot-text"><strong>Cliffs of Moher 莫赫懸崖</strong> — 700英尺高的垂直峭壁，清晨人少，光線最美，可沿海岸步道行走</span></li>
+            <li><span class="spot-icon">🪨</span><span class="spot-text"><strong>Aran Islands 阿倫群島</strong> — 從Rossaveal搭船40分鐘，Inis Mór最大，騎自行車環島，史前石堡Dún Aonghasa懸崖邊</span></li>
+            <li><span class="spot-icon">🌿</span><span class="spot-text"><strong>Connemara National Park</strong> — 石楠曠野、沼澤地，Diamond Hill爬山景色壯麗，秋天色彩如油畫</span></li>
+            <li><span class="spot-icon">🏰</span><span class="spot-text"><strong>Kylemore Abbey</strong> — 湖邊新哥特式城堡修道院，維多利亞時代花園，本篤會修女至今仍居住</span></li>
+            <li><span class="spot-icon">🌉</span><span class="spot-text"><strong>The Burren 石灰岩荒原</strong> — 地質奇觀，石縫中長出地中海植物，春天野花盛開，有巨石古墓Poulnabrone</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="gal-hidden">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🏖</span><span class="spot-text"><strong>Dog's Bay Beach</strong> — 科諾馬拉最美白沙灘，沙子由貝殼碎粒構成，銀白色，幾乎無人知</span></li>
+            <li><span class="spot-icon">🗺</span><span class="spot-text"><strong>Sky Road 天空路</strong> — Clifden出發的環形山路，臨崖俯瞰大西洋，無路標少觀光客</span></li>
+            <li><span class="spot-icon">🏘</span><span class="spot-text"><strong>Roundstone 小漁村</strong> — 藝術家聚居地，手工皮鼓工坊Malachy Kearns，村中酒吧有自發傳統音樂</span></li>
+            <li><span class="spot-icon">💧</span><span class="spot-text"><strong>Killary Harbour 峽灣</strong> — 愛爾蘭唯一真正峽灣，船遊或皮划艇，極度靜謐</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="gal-food">
+          <ul class="spots-list">
+            <li><span class="spot-icon">⭐</span><span class="spot-text"><strong>Aniar Restaurant</strong> — 高威唯一Michelin星，主廚JP McMahon堅持全西岸食材，需早訂</span></li>
+            <li><span class="spot-icon">🦪</span><span class="spot-text"><strong>Tigh Neachtain Pub</strong> — 高威牡蠣、羊肉串、在地精釀啤酒，傳統音樂現場演奏</span></li>
+            <li><span class="spot-icon">🥐</span><span class="spot-text"><strong>Éan Bakery</strong> — Michelin Bib Gourmand，小酒館風格，酵母麵包配當季食材</span></li>
+            <li><span class="spot-icon">🦪</span><span class="spot-text"><strong>高威牡蠣節（9月）</strong> — 號稱世界最大牡蠣節，現場開蠔比賽，必須親歷一次</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAYO & SLIGO -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">⛰</div>
+        <div>
+          <div class="region-name">梅奧 & 斯萊戈</div>
+          <div class="region-gaelic">Maigh Eo & Sligeach · 推薦停留：2-3週</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">🌿 夏末秋初徒步最佳</span>
+        <p class="region-desc">詩人葉慈的故鄉，西岸最少遊客的秘境。野豬滾打的荒野、本尼布爾巨岩、以及本莫爾等讓衝浪者著迷的大西洋浪點。</p>
+        <ul class="spots-list">
+          <li><span class="spot-icon">🏄</span><span class="spot-text"><strong>Enniscrone / Strandhill</strong> — 大西洋衝浪勝地，冬天浪高驚人，有海藻浴傳統SPA</span></li>
+          <li><span class="spot-icon">⛰</span><span class="spot-text"><strong>Croagh Patrick 聖山</strong> — 愛爾蘭人的朝聖山，每年七月末萬人赤腳登頂，日落景色無敵</span></li>
+          <li><span class="spot-icon">🪨</span><span class="spot-text"><strong>Céide Fields</strong> — 5000年前石器時代農耕遺址，世界最古老的田地系統</span></li>
+          <li><span class="spot-icon">📖</span><span class="spot-text"><strong>葉慈之墓 Drumcliff</strong> — 斯萊戈小教堂，墓碑題詞由葉慈親自撰寫：「Cast a cold Eye...」</span></li>
+          <li><span class="spot-icon">🌅</span><span class="spot-text"><strong>Ben Bulben 台型山</strong> — 斯萊戈平頂巨岩地標，愛爾蘭神話中英雄Diarmuid的長眠之地</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DONEGAL -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">🌊</div>
+        <div>
+          <div class="region-name">多尼戈爾 Donegal</div>
+          <div class="region-gaelic">Dún na nGall · 推薦停留：2-3週</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">☀️ 夏季必去，風雨也是風景</span>
+        <p class="region-desc">愛爾蘭最偏北、最狂野的縣份。Slieve League比莫赫懸崖更高、更原始、更少人知道。愛爾蘭語在此仍是日常語言。</p>
+        <ul class="spots-list">
+          <li><span class="spot-icon">🏔</span><span class="spot-text"><strong>Slieve League 峭壁</strong> — 海拔601公尺，比莫赫懸崖高兩倍，步道行走，視野令人窒息</span></li>
+          <li><span class="spot-icon">🏖</span><span class="spot-text"><strong>Malin Head</strong> — 愛爾蘭最北端，《星際大戰》取景地，荒涼壯麗到不真實</span></li>
+          <li><span class="spot-icon">🌀</span><span class="spot-text"><strong>Fanad Head Lighthouse</strong> — 世界最美燈塔之一，可入住燈塔自炊</span></li>
+          <li><span class="spot-icon">🦌</span><span class="spot-text"><strong>Glenveagh National Park</strong> — 鹿群悠閒散步，維多利亞式城堡，高山湖泊倒影</span></li>
+          <li><span class="spot-icon">🧶</span><span class="spot-text"><strong>Donegal Tweed 手工布坊</strong> — Magee's等百年布行，購買正宗多尼戈爾粗花呢毛料</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MIDLANDS -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">🏰</div>
+        <div>
+          <div class="region-name">中部地區 Midlands</div>
+          <div class="region-gaelic">Lár na Tíre · 推薦停留：1-2週</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">🍂 秋天最有氣氛</span>
+        <p class="region-desc">最常被遊客忽略的地區，卻藏著愛爾蘭最完整的中世紀城鎮、最壯觀的修道院廢墟，以及愛爾蘭獨特的沼澤地景觀。</p>
+        <ul class="spots-list">
+          <li><span class="spot-icon">⛪</span><span class="spot-text"><strong>Clonmacnoise 修道院</strong> — 6世紀建立的修道院廢墟群，香農河畔，愛爾蘭最重要的歷史遺址之一</span></li>
+          <li><span class="spot-icon">🗺</span><span class="spot-text"><strong>Birr Castle & Gardens</strong> — 愛爾蘭最大私人花園，有維多利亞時代天文望遠鏡遺跡</span></li>
+          <li><span class="spot-icon">🏰</span><span class="spot-text"><strong>Rock of Cashel 卡舍爾岩</strong> — 孤岩上的中世紀宮殿群，氣場雄渾，光線好時如月球地景</span></li>
+          <li><span class="spot-icon">🌊</span><span class="spot-text"><strong>Lough Derg 湖區</strong> — 愛爾蘭最大淡水湖，划獨木舟、釣魚、騎行湖岸</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WICKLOW & WEXFORD -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">🌲</div>
+        <div>
+          <div class="region-name">威克洛 & 韋克斯福德</div>
+          <div class="region-gaelic">Cill Mhantáin & Loch Garman</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">🌸 春夏徒步花園最美</span>
+        <p class="region-desc">「愛爾蘭的花園」——威克洛是最接近都柏林的秘境山脈，韋克斯福德是日照時數最高的郡份，有悠閒海濱與歷史小鎮。</p>
+        <ul class="spots-list">
+          <li><span class="spot-icon">🏛</span><span class="spot-text"><strong>Glendalough 格倫達洛</strong> — 6世紀聖凱文修道院、雙湖谷地，秋天楓紅倒影，全年最美短徒步之一</span></li>
+          <li><span class="spot-icon">🌿</span><span class="spot-text"><strong>Powerscourt Estate</strong> — 愛爾蘭最美莊園花園，義大利式台地，愛爾蘭最高瀑布在此</span></li>
+          <li><span class="spot-icon">🏖</span><span class="spot-text"><strong>Curracloe Beach</strong> — 《拯救雷恩大兵》諾曼地登陸場景拍攝地，11公里長白沙灘</span></li>
+          <li><span class="spot-icon">🦅</span><span class="spot-text"><strong>Wicklow Way 長距離步道</strong> — 132公里從都柏林到克拉納孔，最受本地人喜愛的多日徒步</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- NORTHERN IRELAND -->
+    <div class="region-card">
+      <div class="region-header">
+        <div class="region-icon">🌁</div>
+        <div>
+          <div class="region-name">北愛爾蘭 Northern Ireland</div>
+          <div class="region-gaelic">Tuaisceart Éireann · 推薦停留：2-3週</div>
+        </div>
+      </div>
+      <div class="region-body">
+        <span class="region-season">☀️ 夏季人少，全年皆可</span>
+        <p class="region-desc">英國管轄，使用英鎊，但風景與文化截然不同。貝爾法斯特有《權力的遊戲》製作之城的盛名，安特里姆海岸公路是歐洲最美海岸公路之一。</p>
+
+        <div class="card-tabs">
+          <button class="card-tab active" onclick="switchTab(this, 'ni-sights')">景點</button>
+          <button class="card-tab" onclick="switchTab(this, 'ni-hidden')">私房</button>
+          <button class="card-tab" onclick="switchTab(this, 'ni-food')">美食</button>
+        </div>
+
+        <div class="card-tab-content active" id="ni-sights">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🪨</span><span class="spot-text"><strong>Giant's Causeway 巨人堤道</strong> — 4萬根六角玄武岩柱，UNESCO世界遺產，配合海浪才是最完整的景</span></li>
+            <li><span class="spot-icon">🌉</span><span class="spot-text"><strong>Carrick-a-Rede 繩橋</strong> — 懸崖之間的細繩橋，搖搖欲墜，下方是深海，限制人數，需預約</span></li>
+            <li><span class="spot-icon">🌳</span><span class="spot-text"><strong>Dark Hedges 黑暗樹籬</strong> — 山毛櫸隧道，《權力的遊戲》「王者之路」，清晨無人時最壯觀</span></li>
+            <li><span class="spot-icon">🚢</span><span class="spot-text"><strong>鐵達尼博物館 Belfast</strong> — 世界最佳旅遊景點大獎，鐵達尼號誕生地，9層樓沉浸式體驗</span></li>
+            <li><span class="spot-icon">🏰</span><span class="spot-text"><strong>Dunluce Castle</strong> — 懸崖邊廢墟城堡，《冰與火之歌》珊石城原型，隨時有崩落危機的美</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="ni-hidden">
+          <ul class="spots-list">
+            <li><span class="spot-icon">🏞</span><span class="spot-text"><strong>Mourne Mountains 摩恩山脈</strong> — CS路易斯《納尼亞》的靈感地，完全無觀光開發，純野外徒步</span></li>
+            <li><span class="spot-icon">🌊</span><span class="spot-text"><strong>Murlough Bay</strong> — 需徒步才能抵達的秘密海灣，海豹常在礁石上曬日光浴</span></li>
+            <li><span class="spot-icon">🏘</span><span class="spot-text"><strong>Ballycastle 小鎮</strong> — 海岸邊的古老市集小鎮，每年8月Auld Lammas Fair已連辦400年</span></li>
+          </ul>
+        </div>
+
+        <div class="card-tab-content" id="ni-food">
+          <ul class="spots-list">
+            <li><span class="spot-icon">⭐</span><span class="spot-text"><strong>The Muddlers Club</strong> — 貝爾法斯特Michelin星，創意北愛爾蘭料理，老磚牆倉庫改建</span></li>
+            <li><span class="spot-icon">🍺</span><span class="spot-text"><strong>Walled City Brewery (Derry)</strong> — 多獎在手的精釀酒廠餐廳，在古羅馬城牆旁喝在地啤酒</span></li>
+            <li><span class="spot-icon">🥓</span><span class="spot-text"><strong>Ulster Fry 阿爾斯特煎</strong> — 北愛版英式早餐，多了馬鈴薯麵包和燕麥餅，St. George's Market每週末</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end regions-grid -->
+</section>
+
+<!-- ============ FOOD ============ -->
+<section class="section" id="food">
+  <div class="section-header">
+    <p class="section-tag">Food & Drink · 舌尖上的翡翠之島</p>
+    <h2 class="section-title">愛爾蘭的味道</h2>
+    <p class="section-intro">從傳統農家料理到Michelin星星的當代創作，愛爾蘭食材品質驚人——奶酪、海鮮、牛羊肉是核心，威士忌是靈魂。</p>
+  </div>
+
+  <div class="info-block">
+    <h3>🍺 喝什麼？</h3>
+    <ul>
+      <li><strong>Guinness 健力士</strong> — 愛爾蘭黑啤祖師，在都柏林喝比任何地方都好喝，泡沫需等足119.5秒</li>
+      <li><strong>Irish Whiskey 愛爾蘭威士忌</strong> — 三次蒸餾比蘇格蘭更順，Jameson / Redbreast / Green Spot / Teeling是必試品牌</li>
+      <li><strong>Craft Beer 精釀啤酒</strong> — 過去十年爆炸式成長，Eight Degrees、Kinnegar、Whiplash品牌值得關注</li>
+      <li><strong>Poitín 愛爾蘭月光酒</strong> — 傳統違禁烈酒，現已合法化，拿穀物、馬鈴薯蒸餾，高威農村常見</li>
+    </ul>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--gold); margin: 2rem 0 1.5rem; font-size:1.5rem;">🍴 傳統必吃料理</h3>
+  <div class="food-grid">
+    <div class="food-card">
+      <span class="food-emoji">🥣</span>
+      <div class="food-name">Irish Stew</div>
+      <div class="food-zh">愛爾蘭燉菜 · 靈魂之食</div>
+      <p class="food-desc">羊肉（傳統）或牛肉，馬鈴薯、胡蘿蔔、洋蔥慢燉，加上大麥濃縮成稠厚湯底。每個酒吧的配方略有不同。</p>
+      <div class="food-where">📍推薦：<strong>Galway城區各酒吧</strong>、Dingle的Goat Street Cafe</div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🍳</span>
+      <div class="food-name">Full Irish Breakfast</div>
+      <div class="food-zh">愛爾蘭全早餐 · 早上的儀式</div>
+      <p class="food-desc">培根、香腸、黑白血腸、炒蛋、烤蕃茄、蘑菇、烤豆，配上蘇打麵包。一頓就能撐到傍晚。</p>
+      <div class="food-where">📍推薦：都柏林<strong>Fumbally Cafe</strong>（有機版）、各B&B民宿自製</div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🥞</span>
+      <div class="food-name">Boxty</div>
+      <div class="food-zh">馬鈴薯煎餅 · 北方傳統</div>
+      <p class="food-desc">半生薯泥加麵粉煎成的厚餅，口感扎實有嚼勁，配煙燻鮭魚或燉豬腳都絕配。北愛爾蘭與Leitrim郡最傳統。</p>
+      <div class="food-where">📍推薦：都柏林<strong>Holohan's Pantry</strong></div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🦪</span>
+      <div class="food-name">Native Oysters</div>
+      <div class="food-zh">本地生蠔 · 季節限定</div>
+      <p class="food-desc">9至4月的「R月份」才有原生生蠔，高威灣與丁格的生蠔汁水豐沛、帶海藻香，擠一點檸檬、一滴Tabasco最完美。</p>
+      <div class="food-where">📍推薦：<strong>高威牡蠣節</strong>（9月）、Moran's Oyster Cottage</div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🍞</span>
+      <div class="food-name">Soda Bread</div>
+      <div class="food-zh">蘇打麵包 · 愛爾蘭日常主食</div>
+      <p class="food-desc">小蘇打取代酵母，全麥或白麵粉，外脆內軟。每家B&B民宿早晨自製，搭配本地奶油是人間美味。有甜版（Spotted Dog加葡萄乾）。</p>
+      <div class="food-where">📍推薦：任何B&B早餐、超市買Brennan's牌自烤</div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🐟</span>
+      <div class="food-name">Smoked Salmon</div>
+      <div class="food-zh">愛爾蘭煙燻鮭魚 · 出口王牌</div>
+      <p class="food-desc">科諾馬拉煙燻廠（Connemara Smokehouse）的橡木冷燻大西洋鮭魚，口感絲滑，鹽度適中，搭褐麵包吃是標準吃法。</p>
+      <div class="food-where">📍推薦：<strong>Connemara Smokehouse</strong>（可直購）</div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🥩</span>
+      <div class="food-name">Dublin Coddle</div>
+      <div class="food-zh">都柏林燉鍋 · 18世紀窮人美食</div>
+      <p class="food-desc">香腸、培根、馬鈴薯、洋蔥長時間燉至軟爛，曾是都柏林工人家庭的週五晚餐，簡單卻有深度。</p>
+      <div class="food-where">📍推薦：都柏林<strong>The Woollen Mills</strong>（最正宗）</div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🧀</span>
+      <div class="food-name">Irish Artisan Cheese</div>
+      <div class="food-zh">愛爾蘭手工奶酪 · 近年崛起</div>
+      <p class="food-desc">Gubbeen（豬飼料洗皮）、Durrus（溫潤半硬質）、Cashel Blue（溫和藍紋）、St. Tola（山羊新鮮）——品質媲美法國奶酪。</p>
+      <div class="food-where">📍推薦：科克英國市場、各農夫市集</div>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">🍟</span>
+      <div class="food-name">Chipper Fish & Chips</div>
+      <div class="food-zh">炸魚薯條 · 深夜的救贖</div>
+      <p class="food-desc">用鱈魚或黑線鱈（Haddock）裹麵糊炸至金黃，配麥芽醋，裝進報紙包——週五晚上酒吧收攤後的標配宵夜。</p>
+      <div class="food-where">📍推薦：都柏林<strong>Leo Burdock's</strong>（1913年創業）</div>
+    </div>
+  </div>
+
+  <div class="gold-divider" style="margin-top:3rem;"></div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--gold); margin: 2rem 0 1.5rem; font-size:1.5rem;">🥃 威士忌蒸餾廠朝聖之旅</h3>
+  <div class="info-block">
+    <ul>
+      <li><strong>Jameson Distillery (Dublin & Cork)</strong> — 最入門，品牌故事清楚，含3款比較品酒</li>
+      <li><strong>Teeling Whiskey (Dublin)</strong> — 都柏林市區百年後首間蒸餾廠，創始家族三代，小批量實驗性酒款</li>
+      <li><strong>Redbreast / Midleton (Cork)</strong> — 愛爾蘭威士忌中的傳奇，預約後可進行深度參觀</li>
+      <li><strong>Slane Castle Distillery (Meath)</strong> — 古堡酒廠，滾石樂隊曾在城堡戶外舞台演出</li>
+      <li><strong>Connacht Whiskey (Mayo)</strong> — 小農蒸餾廠，完全使用愛爾蘭本地大麥</li>
+    </ul>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--gold); margin: 2rem 0 1.5rem; font-size:1.5rem;">🧑‍🍳 Michelin星級餐廳清單</h3>
+  <div class="food-grid">
+    <div class="food-card" style="border-color:rgba(201,168,76,0.4);">
+      <span class="food-emoji">⭐</span>
+      <div class="food-name">Patrick Guilbaud</div>
+      <div class="food-zh">都柏林 · 愛爾蘭唯一2星</div>
+      <p class="food-desc">法愛融合料理，雅典娜宮殿酒店內，愛爾蘭最高等級的用餐體驗，需數月前預訂。</p>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">⭐</span>
+      <div class="food-name">Aniar</div>
+      <div class="food-zh">高威 · 西岸在地食材聖殿</div>
+      <p class="food-desc">主廚JP McMahon堅持100%愛爾蘭西岸食材，有時甚至使用採集野草。</p>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">⭐</span>
+      <div class="food-name">The Muddlers Club</div>
+      <div class="food-zh">貝爾法斯特 · 舊倉庫的新料理</div>
+      <p class="food-desc">北愛爾蘭最佳餐廳，在舊砲倉改建的空間裡，展現最精緻的北愛食材創作。</p>
+    </div>
+    <div class="food-card">
+      <span class="food-emoji">⭐</span>
+      <div class="food-name">Liath</div>
+      <div class="food-zh">都柏林 · 五感哲學</div>
+      <p class="food-desc">每道菜對應人類五種基本味覺，概念前衛，執行精確，Dún Laoghaire海邊。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEASONAL ============ -->
+<section class="section" id="seasonal">
+  <div class="section-header">
+    <p class="section-tag">Seasons · 一年四季的最佳行動計劃</p>
+    <h2 class="section-title">住一年，<br>就要過四個愛爾蘭</h2>
+    <p class="section-intro">愛爾蘭每個季節都有截然不同的面貌：夏天的節日狂熱、秋天的金色荒野、冬天的壁爐與傳統音樂、春天的蒼翠復甦。</p>
+  </div>
+
+  <div class="info-block">
+    <h3>☁️ 關於天氣的心理建設</h3>
+    <p>愛爾蘭全年多雨，但鮮少連續幾天不見陽光。「愛爾蘭四季都在同一天」是本地玩笑話。準備防水外套（Gore-Tex）、防水登山鞋，學會在陣雨中繼續生活——你才能真正享受這裡。5月和9月通常是最佳旅行天氣。</p>
+  </div>
+
+  <div class="seasons-grid">
+    <div class="season-card" data-emoji="🌸">
+      <div class="season-name">春季 Spring</div>
+      <div class="season-months">3月 — 5月 | 最清新的愛爾蘭</div>
+      <ul class="season-list">
+        <li>🍀 <strong>3/17 聖派翠克節</strong> — 都柏林全城綠色，大型遊行，全世界愛爾蘭文化的核心日</li>
+        <li>🌼 The Burren 石灰岩荒原野花盛開，地中海物種與高山植物同場</li>
+        <li>🐦 Cape Clear Island 候鳥觀察季節開始</li>
+        <li>🎣 5月起愛爾蘭西岸鱒魚釣魚季開始</li>
+        <li>🌿 Wicklow花園與莊園重新開放，Powerscourt春日最美</li>
+        <li>🛶 皮划艇、獨木舟開始營業季（Kerry、Connemara）</li>
+        <li>🚶 長距離步道（Wicklow Way, Kerry Way）最舒適的季節</li>
+        <li>🐣 復活節是愛爾蘭重要節日，紀念1916年起義，都柏林GPO相關活動</li>
+      </ul>
+    </div>
+
+    <div class="season-card" data-emoji="☀️">
+      <div class="season-name">夏季 Summer</div>
+      <div class="season-months">6月 — 8月 | 最熱鬧的愛爾蘭</div>
+      <ul class="season-list">
+        <li>📚 <strong>6/16 Bloomsday</strong> — 喬伊斯《尤利西斯》紀念日，全都柏林人變裝，跟隨書中路線遊城</li>
+        <li>🎪 <strong>7月 Galway Arts Festival</strong> — 高威最大藝術節，兩週，免費與付費表演密集</li>
+        <li>🏇 <strong>7月 Galway Races</strong> — 愛爾蘭最大賽馬周，全城派對，絕對要穿戴整齊</li>
+        <li>🦪 <strong>9月 Galway Oyster Festival</strong> — 嚴格來說橫跨夏末秋初，世界最大牡蠣節</li>
+        <li>🌊 Aran Islands / Skellig Islands 天氣最穩定，島嶼船班最密</li>
+        <li>🎵 每個小鎮都有夏季傳統音樂節（Fleadh Ceoil）</li>
+        <li>🏄 Bundoran、Strandhill大西洋衝浪季高峰</li>
+        <li>🏕 露營車遊愛爾蘭西岸最完美的季節，營地充裕</li>
+      </ul>
+    </div>
+
+    <div class="season-card" data-emoji="🍂">
+      <div class="season-name">秋季 Autumn</div>
+      <div class="season-months">9月 — 11月 | 最美麗的愛爾蘭</div>
+      <ul class="season-list">
+        <li>🍁 Connemara、Wicklow Mountains 楓紅秋色如油畫</li>
+        <li>🎃 <strong>10/31 萬聖節</strong> — 愛爾蘭就是萬聖節的發源地，Derry是歐洲最大萬聖節慶典城市</li>
+        <li>🦪 原生生蠔季節正式開始（9-4月），品質最佳</li>
+        <li>🎨 Cork Jazz Festival（10月） — 科克爵士音樂節，全城變成舞台</li>
+        <li>📖 都柏林文學節（10月）— 愛爾蘭最重要的文學盛事</li>
+        <li>🦅 候鳥南遷季，鳥類觀察者的天堂（West Cork、Kerry）</li>
+        <li>🍄 愛爾蘭森林採蘑菇季節，Wicklow與Leitrim最豐富</li>
+        <li>🌫 晨霧籠罩古蹟，Glendalough、Rock of Cashel最具氣氛</li>
+      </ul>
+    </div>
+
+    <div class="season-card" data-emoji="❄️">
+      <div class="season-name">冬季 Winter</div>
+      <div class="season-months">12月 — 2月 | 最溫暖靈魂的愛爾蘭</div>
+      <ul class="season-list">
+        <li>🔥 冬天愛爾蘭的靈魂在室內——壁爐旁的傳統音樂Session最純粹</li>
+        <li>🎄 都柏林聖誕節市集（Smithfield廣場）、燈光裝置精彩</li>
+        <li>🌊 大西洋冬季巨浪，Mullaghmore、Aileen's Wave是世界級大浪衝浪點，觀看就已震撼</li>
+        <li>🌌 最長的夜晚——<strong>冬至前後，Newgrange石陣天窗對準日出</strong>，需抽籤才能入內（現在排名單）</li>
+        <li>🎶 Wren's Day（12/26）— 各地有面具遊行奇特傳統，County Kerry最盛</li>
+        <li>🏔 Connemara、Donegal、Wicklow的冬日孤絕之美，幾乎零觀光客</li>
+        <li>🥃 這是品嚐單一麥芽威士忌最適合的季節，配泥炭壁爐</li>
+        <li>💧 溫泉SPA季 — Enniscrone 的海藻浴（Kilcullen's Bath House）最暖心</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-block" style="margin-top:2rem;">
+    <h3>🗓 一年行程規劃建議</h3>
+    <ul>
+      <li><strong>3-4月</strong>：以都柏林為基地，適應生活，探索威克洛、米斯（Newgrange巨石陣）</li>
+      <li><strong>5-6月</strong>：前進西岸，科克→凱里→高威→科諾馬拉，天氣開始穩定</li>
+      <li><strong>7-8月</strong>：夏季節日高峰，鎖定高威藝術節、前往阿倫群島、斯克林島</li>
+      <li><strong>9-10月</strong>：最美秋色，多尼戈爾、梅奧、斯萊戈的荒野之旅</li>
+      <li><strong>11-12月</strong>：北愛爾蘭（冬天遊客最少），巨人堤道有霜凍之美</li>
+      <li><strong>1-2月</strong>：留在都柏林深潛——博物館、劇院、酒吧文化、語言課程</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ BUY ============ -->
+<section class="section" id="buy">
+  <div class="section-header">
+    <p class="section-tag">Shopping · 必買伴手禮完全清單</p>
+    <h2 class="section-title">帶什麼<br>回台灣</h2>
+    <p class="section-intro">愛爾蘭的手工藝品幾乎全部值得購買，關鍵是找到真正的本地製造，而非中國進口的「愛爾蘭風格」紀念品。</p>
+  </div>
+
+  <div class="info-block">
+    <h3>⚠️ 購物必備知識</h3>
+    <p>愛爾蘭VAT稅率23%，持非歐盟護照可在參與商店辦理退稅（Tax Free）。「Made in Ireland」標示才是真正本地製造，避免購買標示「Irish Design」（可能在中國製造）的商品。</p>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--gold); margin: 2rem 0 1.5rem; font-size:1.4rem;">🧶 紡織 & 服裝</h3>
+  <div class="buy-grid">
+    <div class="buy-item">
+      <span class="buy-emoji">🧥</span>
+      <div class="buy-name">Aran Sweater 阿倫毛衣</div>
+      <div class="buy-zh">最正宗的愛爾蘭標誌</div>
+      <p class="buy-desc">純羊毛手工編織，繩索、鑽石、蜂巢等圖案各有涵義，每個家族有獨特花紋。真品購自Aran Islands上的小工坊或Galway的Aran Sweater Market。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🧣</span>
+      <div class="buy-name">Donegal Tweed 多尼戈爾粗花呢</div>
+      <div class="buy-zh">貴族質感的手工布料</div>
+      <p class="buy-desc">兩百年傳統，用天然羊毛染色的粗花呢，觸感厚實有溫度感。多尼戈爾鎮的Magee's是最著名製造商，可購買布料或成衣。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🎩</span>
+      <div class="buy-name">Flat Cap 愛爾蘭平頂帽</div>
+      <div class="buy-zh">本地日常帽款</div>
+      <p class="buy-desc">愛爾蘭鄉村男性的標配帽，粗花呢材質，Hanna Hats品牌在Donegal手工製作，全球愛好者指定購買。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🧤</span>
+      <div class="buy-name">Merino 羊毛配件</div>
+      <div class="buy-zh">實用又優雅</div>
+      <p class="buy-desc">愛爾蘭品牌Foxford（Mayo）生產了美麗的羊毛毯和圍巾，1892年創立的編織廠，品質保證。</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--gold); margin: 2rem 0 1.5rem; font-size:1.4rem;">🥃 食品 & 飲料</h3>
+  <div class="buy-grid">
+    <div class="buy-item">
+      <span class="buy-emoji">🥃</span>
+      <div class="buy-name">Single Malt Whiskey 單桶威士忌</div>
+      <div class="buy-zh">最具性價比的高端伴手禮</div>
+      <p class="buy-desc">Redbreast 12年（教科書級別）、Green Spot（罕見單一罐裝）、Teeling Small Batch（免稅店限定版）。機場免稅店有時有台灣買不到的限定款。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🧀</span>
+      <div class="buy-name">Artisan Cheese 手工奶酪</div>
+      <div class="buy-zh">真空包裝帶回</div>
+      <p class="buy-desc">Cashel Blue（藍紋）、Durrus（溫潤半硬）、Gubbeen（洗皮滑順）購買真空包裝，可撐2-3週。科克英國市場是最佳採購地點。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🍫</span>
+      <div class="buy-name">Butlers 愛爾蘭巧克力</div>
+      <div class="buy-zh">都柏林百年品牌</div>
+      <p class="buy-desc">1932年創立，用愛爾蘭奶油製作的松露巧克力和熱巧克力粉，Bewley's Cafe同場出售。超市有售但旗艦店有更多口味。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🌊</span>
+      <div class="buy-name">Irish Sea Salt & Seaweed</div>
+      <div class="buy-zh">大西洋的味道</div>
+      <p class="buy-desc">Achill Island Sea Salt、Connemara海藻茶、乾燥dulse（紅藻）可入菜，是最獨特的食材伴手禮，超市與農夫市集均有售。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🍯</span>
+      <div class="buy-name">Irish Honey 愛爾蘭蜂蜜</div>
+      <div class="buy-zh">石楠花蜂蜜獨一無二</div>
+      <p class="buy-desc">Heather Honey（石楠花蜂蜜）味道濃郁帶甜，顏色深金，農夫市集直接向蜂農購買最新鮮，Blarney農場有時有售。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🐟</span>
+      <div class="buy-name">Smoked Salmon 煙燻鮭魚</div>
+      <div class="buy-zh">真空包裝輕易帶走</div>
+      <p class="buy-desc">Connemara Smokehouse、Burren Smokehouse是最知名品牌，真空包裝在機場溫度下可維持品質，是頂級的美食伴手禮。</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--gold); margin: 2rem 0 1.5rem; font-size:1.4rem;">💎 工藝 & 珠寶</h3>
+  <div class="buy-grid">
+    <div class="buy-item">
+      <span class="buy-emoji">💍</span>
+      <div class="buy-name">Claddagh Ring 克萊達戒指</div>
+      <div class="buy-zh">愛爾蘭愛情與友誼象徵</div>
+      <p class="buy-desc">高威克萊達村起源，兩手捧心加皇冠設計，戴法方向代表感情狀態。Thomas Dillon's是高威最古老的Claddagh Ring製造商（1750年）。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🪨</span>
+      <div class="buy-name">Connemara Marble 科諾馬拉大理石</div>
+      <div class="buy-zh">愛爾蘭特有的綠色大理石</div>
+      <p class="buy-desc">世界僅產於科諾馬拉地區的深綠色天然石材，製成首飾、念珠、桌上擺飾，Connemara Marble Visitor Centre有工廠直售。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🔮</span>
+      <div class="buy-name">Waterford Crystal 沃特福德水晶</div>
+      <div class="buy-zh">愛爾蘭水晶瓷器之都</div>
+      <p class="buy-desc">手工吹製的重水晶玻璃，有特定的切割紋路，酒杯、花瓶、雕塑均有，沃特福德市可參觀工廠製作過程。</p>
+    </div>
+    <div class="buy-item">
+      <span class="buy-emoji">🎨</span>
+      <div class="buy-name">本地藝術家版畫</div>
+      <div class="buy-zh">最獨特的藝術紀念</div>
+      <p class="buy-desc">Connemara、Dingle、Donegal各地都有藝術家工作室開放參觀購買。比量販紀念品更有收藏價值，價格相對合理。</p>
+    </div>
+  </div>
+
+  <div class="info-block" style="margin-top:2rem;">
+    <h3>🏪 最佳購物地點</h3>
+    <ul>
+      <li><strong>都柏林 Grafton Street</strong> — 旗艦品牌、百貨公司（Brown Thomas）、紀念品店集中地</li>
+      <li><strong>都柏林 George's Street Arcade</strong> — 1880年代古典市集建築，二手書、唱片、手工飾品</li>
+      <li><strong>科克 English Market</strong> — 食品伴手禮最佳採購地，全愛爾蘭最優質農產品</li>
+      <li><strong>高威 Shop Street</strong> — 街頭藝人+精品小店，Claddagh Ring務必在此購買</li>
+      <li><strong>各地週末農夫市集</strong> — 最真實、最新鮮，Dublin（週六Temple Bar）、Cork（週六英國市場外）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TIPS ============ -->
+<section class="section" id="tips">
+  <div class="section-header">
+    <p class="section-tag">Essential Info · 實用生存資訊</p>
+    <h2 class="section-title">在愛爾蘭<br>生活一年的關鍵</h2>
+    <p class="section-intro">從交通到文化禮儀，從節費省錢到融入本地生活，這些是每一個長住者都需要知道的實用資訊。</p>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <span class="tip-icon">🚌</span>
+      <div class="tip-title">交通：如何移動</div>
+      <p class="tip-text">都柏林市內：DART鐵路、Luas輕鐵、公車三合一，買Leap Card省約20%。城際：Bus Éireann長途巴士覆蓋全國，鐵路貴但舒適。西岸：必須租車，公共交通幾乎停用。Google Maps在愛爾蘭很準確，但鄉村地址要用Eircode郵遞區號搜尋。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🏠</span>
+      <div class="tip-title">住宿：長租訣竅</div>
+      <p class="tip-text">都柏林租屋市場極緊張，Daft.ie是最主要平台，要付押金+一個月房租，排隊看房競爭激烈。Share house共居很普通。郊區（如Swords、Bray）比市中心便宜40%。長住民宿B&B可談週租月租優惠。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">📡</span>
+      <div class="tip-title">手機 & 網路</div>
+      <p class="tip-text">Three Ireland或Vodafone提供最佳5G覆蓋，月費€20-35含充足數據。Eir有光纖寬帶。西岸農村地區訊號仍然不穩，下載離線地圖（Maps.me）是必要的。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">💰</span>
+      <div class="tip-title">消費：預算參考</div>
+      <p class="tip-text">都柏林是歐洲生活費用最高城市之一。一杯咖啡€4-5、一品脫啤酒€6-7、餐廳午餐€12-20、超市雜貨週消費€70-100（一人）。農夫市集、Lidl/Aldi超市是省錢關鍵。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🎵</span>
+      <div class="tip-title">Trad Music 傳統音樂</div>
+      <p class="tip-text">愛爾蘭傳統音樂的精髓在「Session」——一群樂手在酒吧自發聚集演奏，沒有舞台，沒有廣告，聽眾坐在旁邊同桌。敲門問「有沒有Session今晚？」是最好的找樂子方式。週四至週六最密集。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🗣</span>
+      <div class="tip-title">愛爾蘭人的溝通方式</div>
+      <p class="tip-text">愛爾蘭人極為友善但不直接。「Thanks a million」是很高興、「Grand」表示一切正常、「Not too bad」是很好的意思。批評時會先說三個優點。酒吧是社交核心——點了酒，鄰座就可能聊上整晚。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🌧</span>
+      <div class="tip-title">天氣與穿衣</div>
+      <p class="tip-text">必備：防水外套（Gore-Tex或North Face）、防水登山鞋（Salomon或Merrell）、毛衣多件、快乾衣物。愛爾蘭人從不帶傘——用帽子就好。夏天最高氣溫約20°C，冬天約5-8°C，極少下雪。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🎪</span>
+      <div class="tip-title">免費活動大全</div>
+      <p class="tip-text">都柏林絕大多數博物館免費（國家博物館、國家美術館、自然史博物館、Chester Beatty圖書館）。國家公園無入場費。海灘全部免費。傳統音樂Session不收費。聖派翠克節遊行、Bloomsday活動均免費參與。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🌱</span>
+      <div class="tip-title">融入本地生活</div>
+      <p class="tip-text">加入GAA（蓋爾式球類）本地球隊是最快融入的方式——哪怕只是觀看比賽。各社區有免費愛爾蘭語課（Conradh na Gaeilge）。報名當地跑步俱樂部（Parkrun每週六免費）。參加本地GAA、戲劇社、音樂課程。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">📜</span>
+      <div class="tip-title">必讀書單</div>
+      <p class="tip-text">行前閱讀：喬伊斯《都柏林人》短篇集、貝克特《等待果陀》（要理解愛爾蘭幽默）、Colm Tóibín《Nora Webster》（愛爾蘭女性故事）、Donal Ryan（當代最佳愛爾蘭小說家）任何作品。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🏥</span>
+      <div class="tip-title">醫療 & 保險</div>
+      <p class="tip-text">持有Stamp 1G/2/4簽證者可申請醫療卡（Medical Card）享受公費醫療。GP（全科醫生）一次就診約€50-70，最好購買私人健保（如Irish Life Health或Laya Healthcare）。藥局（Pharmacy）門診可看小病。</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🌿</span>
+      <div class="tip-title">健行資源</div>
+      <p class="tip-text">Walkni.com（北愛）、Mountaineering Ireland官網有全國步道地圖。Ordnance Survey Discovery Map系列是最詳細的地形圖，每個縣一張，必備。愛爾蘭所有步道都免費，偶爾需繳停車費（€2-5）。</p>
+    </div>
+  </div>
+
+  <div class="info-block" style="margin-top:2rem;">
+    <h3>☘ 最後一句話</h3>
+    <p>愛爾蘭有一個詞——<strong>「Craic」</strong>（發音同crack），沒有完美的翻譯，大概是「好時光、好氣氛、人與人之間那種自然的歡騰」的合體。當有人問你「Any craic?」，他們不是問新聞，而是問「你最近好不好？有沒有玩得開心？」——住在愛爾蘭一年，最終你要學會的，就是這個詞的感受。</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="shamrock">☘</span>
+  <p>愛爾蘭一年深度完全攻略 · Comprehensive Ireland Year Guide</p>
+  <p style="margin-top:0.5rem; font-size:0.8rem; opacity:0.6;">Sláinte！乾杯，也祝你有個美好的旅程 🥃</p>
+</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('.nav').offsetTop, behavior: 'smooth' });
+}
+
+function switchTab(btn, contentId) {
+  const card = btn.closest('.region-card') || btn.closest('.section');
+  const tabs = btn.parentElement.querySelectorAll('.card-tab');
+  tabs.forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  // find all sibling tab contents
+  const contents = btn.closest('.region-body').querySelectorAll('.card-tab-content');
+  contents.forEach(c => c.classList.remove('active'));
+  document.getElementById(contentId).classList.add('active');
+}
+</script>
+</body>
+</html>
